@@ -1,6 +1,5 @@
 // IMPORTS
 const express = require('express')
-const bodyParser = require('body-parser')
 const taskRoutes = require('./routes/taskRoutes')
 const app = express()
 
@@ -23,13 +22,18 @@ db.on('connected', () => { console.log('mongo connected')})
 db.on('disconnected', () => { console.log('mongo disconnected')})
 
 // Test Route //////
-// app.get('/', (req, res) => {
-//    res.send('Hello world!')
-// })
+app.get('/', (req, res) => {
+   res.send('Hello world!')
+ })
 
 // Middleware ////////////////////////////////////////////////
+
+// Task Route definition
+app.use(taskRoutes)
+
 // POST Parsing
-app.use(bodyParser.urlencoded({ extend: true }))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 // Static Files
 app.use(express.static('public'))
@@ -37,12 +41,11 @@ app.use(express.static('public'))
 // EJS Views
 app.set('view engine', 'ejs')
 
-// Task Route definition
-app.use(taskRoutes)
-
 // Basic Error handling
-app.use((req, res) => {
+app.use((req, res, next) => {
+  console.log(`Request made to url: ${req.url}`)
   res.status(404).send('404 Not Found')
+  next()
 })
 
 // Server Instructions ////////////////////////////////////////////////

@@ -26,7 +26,7 @@ router.get('/tasks/:id/edit', taskController.editTaskForm)
 router.put('/tasks/:id', taskController.updateTask)
 
 // HTTP DELETE request - DELETE a specific task by ID
-router.put('/tasks/:id', taskController.deleteTask)
+router.delete('/tasks/:id', taskController.deleteTask)
 
 
 module.exports = router

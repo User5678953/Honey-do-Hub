@@ -1,0 +1,22 @@
+<%- include('./partials/header.ejs') %>
+
+    <h1>Task Details</h1>
+
+    <h2>
+        <%= task.title %>
+    </h2>
+    <p>Description: <%= task.description %>
+    </p>
+    <p>Assigned User: <%= task.user %>
+    </p>
+    <p>Status: <%= task.status %>
+    </p>
+    <p>Created On: <%= task.createdOn %>
+    </p>
+    <p>Updated On: <%= task.updatedOn %>
+    </p>
+
+    <a href="/tasks/<%= task._id %>/edit">Edit</a>
+    <a href="/tasks/<%= task._id %>/delete">Delete</a>
+
+    <%- include('./partials/footer.ejs') %>
