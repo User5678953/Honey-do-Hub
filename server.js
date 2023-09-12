@@ -1,5 +1,7 @@
 // IMPORTS
 const express = require('express')
+const bodyParser = require('body-parser')
+const taskRoutes = require('./routes/taskRoutes')
 const app = express()
 
 require('dotenv').config()
@@ -20,9 +22,28 @@ db.on('error', (err) => { console.log('ERROR: ' , err)})
 db.on('connected', () => { console.log('mongo connected')})
 db.on('disconnected', () => { console.log('mongo disconnected')})
 
-app.get('/', (req, res) => {
-   res.send('Hello world!')
+// Test Route //////
+// app.get('/', (req, res) => {
+//    res.send('Hello world!')
+// })
+
+// Middleware ////////////////////////////////////////////////
+// POST Parsing
+app.use(bodyParser.urlencoded({ extend: true }))
+
+// Static Files
+app.use(express.static('public'))
+
+// EJS Views
+app.set('view engine', 'ejs')
+
+// Basic Error handling
+app.use((req, res) => {
+  res.status(404).send('404 Not Found')
 })
+
+// Task Route definition
+app.use(taskRoutes)
 
 // Server Instructions ////////////////////////////////////////////////
 app.listen(PORT, () => {
