@@ -38,4 +38,14 @@ Honey Do Hub is a web-based task-sharing application designed to help busy coupl
 
    git clone https://github.com/yourusername/honey-do-hub.git
 
+2. Then seed the DB, In the terminal run
+
+  node seed.js
+
+  you will see 'Database seeded Successfully'
+
+3. Then start the application 
+
+  node server.js 
+
    
