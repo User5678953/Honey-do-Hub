@@ -37,16 +37,16 @@ app.use(express.static('public'))
 // EJS Views
 app.set('view engine', 'ejs')
 
+// Task Route definition
+app.use(taskRoutes)
+
 // Basic Error handling
 app.use((req, res) => {
   res.status(404).send('404 Not Found')
 })
 
-// Task Route definition
-app.use(taskRoutes)
-
 // Server Instructions ////////////////////////////////////////////////
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is listening on PORT: ${PORT}`)
 })
 

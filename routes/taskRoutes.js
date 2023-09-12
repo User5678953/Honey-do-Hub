@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const taskController = require('../controllers/taskController')
 
+console.log(taskController);
+
+
 // Routes to controller 
 
 // (index.ejs) HTTP GET request - READ all Tasks
@@ -14,7 +17,7 @@ router.get('/tasks/new', taskController.newTaskForm)
 router.post('/tasks', taskController.createTask)
 
 // (show.ejs) HTTP GET request - READ single task by ID
-router.get('/tasks/:id', taskController.getTaskByID)
+router.get('/tasks/:id', taskController.getTaskById)
 
 // (edit.ejs) HTTP POST request - CREATE a new task
 router.get('/tasks/:id/edit', taskController.editTaskForm)
