@@ -1,23 +1,49 @@
 body {
     font-family: 'Arial', sans-serif;
-    color: green;
+    color: #333;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
 }
 
 main {
-    background-color: #fff;
-    padding: 20px 40px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    border-radius: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-h1, h2 {
+.container {
+    background-color: #fff;
+    padding: 20px 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 500px;
+}
+.login-container {
+    background-image: url('https://img.freepik.com/premium-photo/3d-illustration-yellow-honeycomb-monochrome-honeycomb-honey_116124-2277.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1,
+h2 {
     color: #2c3e50;
 }
 
@@ -26,28 +52,53 @@ p {
     line-height: 1.6;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    width: 100%;
 }
 
-ul li {
-    margin-bottom: 10px;
+input[type="text"],
+input[type="password"] {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 3px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submit-button
+ {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #2980b9;
 }
 
 a {
     text-decoration: none;
     color: #3498db;
-    border: 1px solid #3498db;
-    padding: 5px 15px;
-    border-radius: 3px;
-    transition: background-color 0.3s;
+    transition: text-decoration 0.3s;
+    margin-top: 10px;
 }
 
 a:hover {
-    background-color: #3498db;
-    color: #fff;
+    text-decoration: underline;
 }
+
 footer {
     width: 100%;
     text-align: center;

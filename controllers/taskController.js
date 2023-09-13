@@ -40,12 +40,14 @@ exports.createTask = async (req, res) => {
 // GET - READ specific task by ID
 exports.getTaskById = async (req, res) => {
     try {
-        const task = await Task.findById(req.params.id)
+        const taskId = req.params.id
+        const task = await Task.findById(taskId)
+        
         if (!task) {
             res.status(404).send('Task not found')
         } else {
             console.log(`Displaying task with ID: ${req.params.id}`)
-            res.render('show')
+            res.render('show',{ task })
         }
     } catch {
         console.error('Error Fetching task:', error)

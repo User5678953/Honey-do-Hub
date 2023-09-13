@@ -1,13 +1,12 @@
 <%- include('./partials/header.ejs') %>
 
-    <h1>Task List</h1>
+    <h1 class="text-center">Honey-do List</h1>
 
     <table>
         <!-- Table headers -->
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -20,10 +19,8 @@
                     <td>
                         <%= task.title %>
                     </td>
-                    <td>
-                        <%= task.description %>
-                    </td>
-                    <td>
+                   
+                    <td class="text-center">
                         <% if (task.status==='to-do' ) { %>
                             <i class="fas fa-list" title="To-Do"></i>
                             <% } else if (task.status==='in-progress' ) { %>
@@ -33,16 +30,18 @@
                                     <% } %>
                     </td>
                     <td>
-                        <a href="/tasks/<%= task._id %>/edit" class="edit-button">Edit</a>
+                        <a href="/tasks/<%= task._id %>" class="common-button view-button">View</a>
+
+                        <a href="/tasks/<%= task._id %>/edit" class="common-button">Edit</a>
+
                         <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">
-                            <input type="submit" value="DELETE" class="edit-button delete-button">
+                            <input type="submit" value="DELETE" class="common-button delete-button">
+            
                         </form>
                     </td>
                 </tr>
                 <% }); %>
         </tbody>
     </table>
-
-    <a href="/tasks/new">Create New Task</a>
 
     <%- include('./partials/footer.ejs') %>

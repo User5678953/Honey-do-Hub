@@ -16,7 +16,9 @@
     <p>Updated On: <%= task.updatedOn %>
     </p>
 
-    <a href="/tasks/<%= task._id %>/edit">Edit</a>
-    <a href="/tasks/<%= task._id %>/delete">Delete</a>
+    <a href="/tasks/<%= task._id %>/edit" class="common-button">Edit</a>
+    
+        <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">
+            <input type="submit" value="DELETE" class="common-button delete-button">
 
     <%- include('./partials/footer.ejs') %>
