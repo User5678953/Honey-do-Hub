@@ -1,0 +1,12 @@
+<%- include('./partials/header.ejs') %>
+
+    <h1>Create an Account</h1>
+
+    <form action="/user/" method="POST">
+        <input type="text" placeholder="Username" name="username" />
+        <input type="password" placeholder="Password" name="password" />
+        <input type="submit" value="Create Account" />
+    </form>
+    <a href="/user/login">Login</a>
+
+<%- include('./partials/footer.ejs') %>

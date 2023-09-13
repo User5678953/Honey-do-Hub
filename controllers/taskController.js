@@ -24,15 +24,33 @@ exports.newTaskForm = (req, res) => {
 }
 
 // POST - CREATE a new task
-exports.createTask = (req, res) => {
-    console.log('Creating a new task!')
-    //res.redirect
+exports.createTask = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+        const newTask = new Task({ title, description })
+        await newTask.save()
+        console.log('Creating a new task!')
+        res.redirect('/tasks')
+    } catch (error) {
+        console.error('Error creating task:', error);
+        res.status(500).send('An error occurred while creating the task.')
+    }   
 }  
     
 // GET - READ specific task by ID
-exports.getTaskById = (req, res) => {
-    console.log(`Displaying task with ID: ${req.params / id}`)
-    res.render('show')
+exports.getTaskById = async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id)
+        if (!task) {
+            res.status(404).send('Task not found')
+        } else {
+            console.log(`Displaying task with ID: ${req.params.id}`)
+            res.render('show')
+        }
+    } catch {
+        console.error('Error Fetching task:', error)
+        res.status(500).send('An error occurred while fetching the task.')
+    }
 }
 
 // GET - READ form to EDIT task by ID
@@ -47,11 +65,33 @@ exports.editTaskForm = async (req, res) => {
 }
 
 // PUT - Update a task by ID
-exports.updateTask = (req, res) => {
-    console.log(`Updating task with ID: ${req.params.id}`)
+exports.updateTask = async (req, res) => {
+    try {
+        const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
+        if (!updatedTask) {
+            res.status(404).send('Task not found')
+        } else {
+            console.log(`Updating task with ID: ${req.params.id}`)
+            res.redirect(`/tasks/${req.params.id}`)
+        }
+    } catch {
+        console.error('Error updating task:', error)
+        res.status(500).send('An error occurred while updating the task.')
+    }
 }
 
 // DELETE a task by ID 
-exports.deleteTask = (req, res) => {
-    console.log(`Deleteing task with ID: ${req.params.id}`)
+exports.deleteTask = async (req, res) => {
+    try {
+        const deletedTask = await Task.findByIdAndRemove(req.params.id)
+        if (!deletedTask) {
+            res.status(404).send('Task not found')
+        } else {
+            console.log(`Deleteing task with ID: ${req.params.id}`)
+            res.redirect('/tasks')
+        }
+    } catch {
+        console.error('Error deleting task:', error)
+        res.status(500).send('An error occurred while deleting the task.')
+    }    
 }
