@@ -1,34 +1,48 @@
 body {
-    color: blue;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
-    background-color: #333;
+    background-color: #2c3e50;
     color: white;
-    padding: 10px;
+    padding: 15px 0;
+    text-align: center;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
+    display: inline-block;
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 0 15px;
 }
 
 nav a {
     text-decoration: none;
-    color: white;
+    color:#ecf0f1;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
 }
 
 nav a:hover {
     text-decoration: underline;
+    background-color: #34495e;
+    color: #ecf0f1;
 }
+
 .edit-button {
     display: inline-block;
-    background-color: #4CAF50;
+    background-color: #3498db;
     color: white;
     padding: 5px 10px;
     margin: 5px;
@@ -39,5 +53,69 @@ nav a:hover {
 }
 
 .edit-button:hover {
-    background-color: #45a049;
+    background-color: #2980b9;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.edit-button,
+.delete-button {
+    box-sizing: border-box;
+    width: 90px;
+    text-align: center;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+}
+
+.button-group a,
+.button-group form {
+    margin: 0 5px;
+}
+.fas {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.fa-list {
+    color: blue;
+}
+
+.fa-hourglass-half {
+    color: orange;
+}
+
+.fa-check {
+    color: green;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #2c3e50;
+    color: white;
 }

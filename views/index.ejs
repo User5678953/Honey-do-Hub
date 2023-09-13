@@ -1,27 +1,48 @@
 <%- include('./partials/header.ejs') %>
 
-<h1>Task List</h1>
+    <h1>Task List</h1>
 
-<ul>
-    <% tasks.forEach(function(task) { %>
-        <li>
-            <h2>
-                <%= task.title %>
-            </h2>
-            <p>Assigned User: <%= task.user %>
-            </p>
-            <p>Status: <%= task.status %>
-            </p>
-            <a href="/tasks/<%= task._id %>/edit" class="edit-button">Edit</a>
-            
-        <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
-            <input type="submit" value="DELETE">
-        </form>
-        </li>
-        <% }); %>
-</ul>
+    <table>
+        <!-- Table headers -->
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-<a href="/tasks/new">Create New Task</a>
+        <!-- Table body -->
+        <tbody>
+            <% tasks.forEach(function(task) { %>
+                <tr>
+                    <td>
+                        <%= task.title %>
+                    </td>
+                    <td>
+                        <%= task.description %>
+                    </td>
+                    <td>
+                        <% if (task.status==='to-do' ) { %>
+                            <i class="fas fa-list" title="To-Do"></i>
+                            <% } else if (task.status==='in-progress' ) { %>
+                                <i class="fas fa-hourglass-half" title="In-Progress"></i>
+                                <% } else if (task.status==='completed' ) { %>
+                                    <i class="fas fa-check" title="Completed"></i>
+                                    <% } %>
+                    </td>
+                    <td>
+                        <a href="/tasks/<%= task._id %>/edit" class="edit-button">Edit</a>
+                        <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">
+                            <input type="submit" value="DELETE" class="edit-button delete-button">
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
 
-<%- include('./partials/footer.ejs') %>
-   
+    <a href="/tasks/new">Create New Task</a>
+
+    <%- include('./partials/footer.ejs') %>
