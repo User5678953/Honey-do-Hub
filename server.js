@@ -63,25 +63,6 @@ app.use('/', authController)
 // Task Route definition
 app.use('/tasks', isAuthenticated, taskRoutes)
 
-app.get('/any', (req, res) => {
-    req.session.anyProperty = 'something'
-    res.redirect('/tasks')
-})
-
-app.get('/retrieve', (req, res) => {
-    if(req.session.anyProperty === 'something'){
-        console.log('it is a match!')
-    } else {
-        console.log('it is not a match!')
-    }
-    res.redirect('/tasks')
-})
-
-app.get('/updateSession', (req, res) => {
-    req.session.anyProperty = 'not something'
-    res.redirect('/tasks')
-})
-
 
 // Basic Error handling
 app.use((req, res, next) => {

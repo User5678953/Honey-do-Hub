@@ -56,23 +56,29 @@ exports.getTaskById = async (req, res) => {
 // GET - READ form to EDIT task by ID
 exports.editTaskForm = async (req, res) => {
      try {
-        const task = await Task.find()
-        console.log(`Displaying form to edit task with ID: ${req.params.id}`)
-        res.render('edit', { task })
+        const task = await Task.findById(req.params.id)
+         console.log(`Displaying form to edit task with ID: ${req.params.id}`)
+         if (!task) {
+             res.status(404).send('Task not found')
+            } else {
+                res.render('edit', { task: task })
+            }   
     } catch (error) {
          console.error('Error Fetching task for editing:', error)
+         res.status(500).send('An error occurred while fetching the task for editing.')
     }
 }
 
 // PUT - Update a task by ID
 exports.updateTask = async (req, res) => {
+     console.log('Starting the UPDATE Function')
     try {
         const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
         if (!updatedTask) {
             res.status(404).send('Task not found')
         } else {
             console.log(`Updating task with ID: ${req.params.id}`)
-            res.redirect(`/tasks/${req.params.id}`)
+            res.redirect('/tasks')
         }
     } catch {
         console.error('Error updating task:', error)
@@ -82,6 +88,8 @@ exports.updateTask = async (req, res) => {
 
 // DELETE a task by ID 
 exports.deleteTask = async (req, res) => {
+    console.log(`Attempting to delete task with ID: ${req.params.id}`)
+
     try {
         const deletedTask = await Task.findByIdAndRemove(req.params.id)
         if (!deletedTask) {
