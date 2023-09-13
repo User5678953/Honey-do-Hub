@@ -3,16 +3,40 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/userModel')
 
+
+// Render Home Page
+router.get('/', (req, res) => {
+    res.render('register')
+})
+
 // Login form route
-exports.getLogin = (req, res) => {
+router.get('/login', (req, res) => {
     res.render('login')
-}
+})
+
+router.post('/', async (req, res) => {
+    try {
+      
+    const existingUser = await User.findOne({ username: req.body.username })
+    if (existingUser) {
+      return res.status(400).send('Username already exists. Please choose another one.')
+    }
+    console.log('before hash: ', req.body)
+    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+    console.log('after hash: ', req.body)
+    const newUser = await User.create(req.body)
+    req.session.currentUser = newUser
+    res.redirect('/tasks')
+  } catch (err) {
+    console.log(err)
+    res.status(500).send('Please try a different username or password.')
+  }
+})
 
 // Login post route
-exports.postLogin = async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body
-
         // Find the user by their username in your database
         const foundUser = await User.findOne({ username })
 
@@ -33,33 +57,20 @@ exports.postLogin = async (req, res) => {
         }
     } catch (err) {
         console.error(err)
-        res.status(500).send('An error occurred while processing your request.');
-    }
-};
-
-// Registration form route
-exports.getRegister = (req, res) => {
-    res.render('register')
-}
-
-// Registration post route
-exports.postRegister = async (req, res) => {
-    try {
-        const { username, password } = req.body
-
-        // Hash the password before storing it
-        const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-
-        // Create a new user in your database
-        const newUser = await User.create({ username, password: hashedPassword })
-
-        // Create a session for the newly registered user
-        req.session.currentUser = newUser;
-        res.redirect('/tasks')
-    } catch (err) {
-        console.error(err)
         res.status(500).send('An error occurred while processing your request.')
     }
-}
+})
+
+//Log out
+router.delete('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if(err) {
+      console.log(err, '  logout failed')
+      res.status(500).send('Logout failed, please try again')
+    } else {
+      res.redirect('/user/login')
+    }
+  })
+})
 
 module.exports = router

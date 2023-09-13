@@ -5,15 +5,13 @@ const authController = require('./controllers/authController')
 const bcrypt = require('bcrypt')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const mongoose = require('mongoose')
 const app = express()
 
-
+// Load environment variables from a .env file
 require('dotenv').config()
 
 const PORT = process.env.PORT || 3000
-
-// Setup database 
-const mongoose = require('mongoose')
 const mongoURI = process.env.MONGO_URI
 
 // connect to mongo 
@@ -42,39 +40,48 @@ app.use(
       saveUninitialized: false 
     })
   )
- 
 // POST Parsing
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
 app.use(methodOverride('_method'))
-
 
 // Custom authentication middleware
 const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     next();
   } else {
-    res.redirect('/login') // Redirect to login if not authenticated
+    res.redirect('/login') 
   }
 }
 
-
-// Test Route //////
-app.get('/', (req, res) => {
-   res.render('home')
-})
-
 // Route Definitions  ////////////////////////////////////////////////
-// Routes for login and register
-app.get('/login', authController.getLogin)
-app.post('/login', authController.postLogin)
-app.get('/register', authController.getRegister)
-app.post('/register', authController.postRegister)
+
+// Use the routes from authController
+app.use('/', authController)
 
 // Task Route definition
 app.use('/tasks', isAuthenticated, taskRoutes)
+
+app.get('/any', (req, res) => {
+    req.session.anyProperty = 'something'
+    res.redirect('/tasks')
+})
+
+app.get('/retrieve', (req, res) => {
+    if(req.session.anyProperty === 'something'){
+        console.log('it is a match!')
+    } else {
+        console.log('it is not a match!')
+    }
+    res.redirect('/tasks')
+})
+
+app.get('/updateSession', (req, res) => {
+    req.session.anyProperty = 'not something'
+    res.redirect('/tasks')
+})
+
 
 // Basic Error handling
 app.use((req, res, next) => {

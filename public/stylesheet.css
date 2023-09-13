@@ -2,9 +2,6 @@ body {
     color: blue;
 }
 
-
-
-
 nav {
     background-color: #333;
     color: white;
@@ -28,4 +25,19 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+}
+.edit-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
 }

@@ -12,8 +12,11 @@
             </p>
             <p>Status: <%= task.status %>
             </p>
-            <a href="/tasks/<%= task._id %>/edit">Edit</a>
-            <a href="/tasks/<%= task._id %>/delete">Delete</a>
+            <a href="/tasks/<%= task._id %>/edit" class="edit-button">Edit</a>
+            <form action="/tasks/<%= task._id %>" method="POST" style="display: inline;">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Delete</button>
+            </form>
         </li>
         <% }); %>
 </ul>
