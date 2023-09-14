@@ -61,17 +61,4 @@ router.post('/login', async (req, res) => {
     }
 })
 
-//Log out
-router.delete('/logout', (req, res) => {
-    console.log('Loggin out')
-    req.session.destroy(err => {
-    if(err) {
-      console.log(err, '  logout failed')
-      res.status(500).send('Logout failed, please try again')
-    } else {
-      res.redirect('/login')
-    }
-  })
-})
-
 module.exports = router
