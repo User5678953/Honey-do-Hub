@@ -1,7 +1,12 @@
-<%- include('./partials/header.ejs') %>
-<link rel="stylesheet" href="/.css" />
-<body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/form.css" />
+    <title>Document</title>
+</head>
 
+<div class="form-container">
     <h1>Create New Task</h1>
 
     <form method="POST" action="/tasks">
@@ -10,9 +15,6 @@
 
         <label for="description">Description:</label>
         <textarea id="description" name="description"></textarea>
-
-        <label for="user">Assigned User:</label>
-        <input type="text" id="user" name="user">
 
         <label for="status">Status:</label>
         <select id="status" name="status">
@@ -24,5 +26,7 @@
         <button type="submit">Create Task</button>
         <a href="/tasks">Cancel</a>
     </form>
+</div>
+</body>
 
-    <%- include('./partials/footer.ejs') %>
+</html>
