@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     try {
       
     const existingUser = await User.findOne({ username: req.body.username })
-    if (existingUser) {
+      if (existingUser) {
       return res.status(400).send('Username already exists. Please choose another one.')
     }
     console.log('before hash: ', req.body)
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     res.redirect('/tasks')
   } catch (err) {
     console.log(err)
-    res.status(500).send('Please try a different username or password.')
+      res.status(500).send('Please try a different username or password. Use the back button in your browser to return')
   }
 })
 
