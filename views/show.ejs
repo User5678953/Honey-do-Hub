@@ -1,4 +1,19 @@
-<%- include('./partials/header.ejs') %>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/show.css" />
+    <title>Show</title>
+</head>
+<nav>
+    <form action="/" method="GET" style="display: inline;">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="log-out">Logout</button>
+    </form>
+
+    <a href="/tasks">All Tasks</a>
+    <a href="/tasks/new">Create Task</a>
+</nav>
 
 <body>
 
@@ -23,4 +38,6 @@
         <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">
             <input type="submit" value="DELETE" class="common-button delete-button">
 
-    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

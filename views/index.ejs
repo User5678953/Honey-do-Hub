@@ -7,8 +7,9 @@
         <!-- Table headers -->
         <thead>
             <tr>
-                <th>Title</th>
+                <th>Could you please...</th>
                 <th>Status</th>
+                <th>Due Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -31,6 +32,9 @@
                                     <% } %>
                     </td>
                     <td>
+                        <%= task.dueDate ? task.dueDate : 'N/A' %>
+                    </td>
+                    <td>
                         <a href="/tasks/<%= task._id %>" class="common-button view-button">View</a>
 
                         <a href="/tasks/<%= task._id %>/edit" class="common-button">Edit</a>
@@ -45,4 +49,3 @@
         </tbody>
     </table>
 
-    <%- include('./partials/footer.ejs') %>
