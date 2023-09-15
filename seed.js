@@ -15,81 +15,96 @@ db.once('open', async () => {
 console.log('Starting the Seed script')
 
     const seedData =[
-    {
+     {
         "title": "Buy groceries",
         "description": "Purchase items for the week",
-        "status": "to-do"
+        "status": "to-do",
+        "dueDate": "2023-09-23"
     },
     {
         "title": "Clean the living room",
         "description": "Dust and vacuum the living room",
-        "status": "in-progress"
+        "status": "in-progress",
+        "dueDate": "2023-09-22"
     },
     {
         "title": "Pay bills",
         "description": "Pay utility bills and rent",
-        "status": "to-do"
+        "status": "to-do",
+        "dueDate": "2023-09-24"
     },
     {
         "title": "Fix leaking faucet",
         "description": "Call a plumber to fix the kitchen faucet",
-        "status": "in-progress"
+        "status": "in-progress",
+        "dueDate": "2023-09-21"
     },
     {
         "title": "Mow the lawn",
         "description": "Trim the grass in the backyard",
-        "status": "to-do"
+        "status": "to-do",
+        "dueDate": "2023-09-22"
     },
     {
         "title": "Prepare dinner",
         "description": "Cook a special meal for tonight",
-        "status": "in-progress"
+        "status": "in-progress",
+        "dueDate": "2023-09-19"
     },
     {
         "title": "Buy birthday gift",
         "description": "Find a birthday gift for a friend",
-        "status": "completed"
+        "status": "completed",
+        "dueDate": "2023-09-29"
     },
     {
         "title": "Go for a run",
         "description": "Run for 30 minutes in the evening",
-        "status": "to-do"
+        "status": "to-do",
+        "dueDate": "2023-09-24"
     },
     {
         "title": "Read a book",
         "description": "Read the latest novel for 30 minutes",
-        "status": "completed"
+        "status": "completed",
+        "dueDate": "2023-09-27"
     },
     {
         "title": "Organize the garage",
         "description": "Clean and organize the garage space",
-        "status": "completed"
+        "status": "completed",
+        "dueDate": "2023-09-26"
+        },
+     {
+        "title": "Schedule gym sessions",
+        "description": "Plan and schedule gym sessions for the upcoming weeks.",
+        "status": "to-do",
+        "dueDate": "2023-09-16"
     },
     {
-        "title": "Task 11",
-        "description": "Description for Task 11",
-        "status": "to-do"
+        "title": "Plan weekend trip",
+        "description": "Plan a weekend getaway, including hotel booking and itinerary.",
+        "status": "in-progress",
+        "dueDate": "2023-09-27"
     },
     {
-        "title": "Task 12",
-        "description": "Description for Task 12",
-        "status": "in-progress"
+        "title": "Attend online seminar",
+        "description": "Register and attend an online seminar related to web development.",
+        "status": "to-do",
+        "dueDate": "2023-09-23"
     },
     {
-        "title": "Task 13",
-        "description": "Description for Task 13",
-        "status": "to-do"
+        "title": "Complete book review",
+        "description": "Write and submit a book review for the recently read novel.",
+        "status": "completed",
+        "dueDate": "2023-09-29"
     },
     {
-        "title": "Task 14",
-        "description": "Description for Task 14",
-        "status": "completed"
-    },
-    {
-        "title": "Task 15",
-        "description": "Description for Task 15",
-        "status": "completed"
-    } 
+        "title": "Donate old clothes",
+        "description": "Sort out and donate clothes that are no longer needed to a local charity.",
+        "status": "completed",
+        "dueDate": "2023-09-25"
+    }
 ]
 try {
         // Insert seed data into the database

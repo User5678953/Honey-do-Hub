@@ -20,6 +20,11 @@ const taskSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    dueDate: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
 })
 
 //create and export model
