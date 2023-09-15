@@ -6,7 +6,7 @@ const User = require('../models/userModel')
 
 // Render Home Page
 router.get('/', (req, res) => {
-    res.render('register')
+    res.render('login')
 })
 
 // Login form route
@@ -14,7 +14,12 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
-router.post('/', async (req, res) => {
+// register route form route
+router.get('/register', (req, res) => {
+    res.render('register')
+})
+
+router.post('/register', async (req, res) => {
     try {
       
     const existingUser = await User.findOne({ username: req.body.username })
