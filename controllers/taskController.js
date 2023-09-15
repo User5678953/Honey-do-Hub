@@ -10,12 +10,22 @@ exports.getAllTasks = async (req, res) => {
     // Fetch from db
     try {
         const tasks = await Task.find()
-        res.render('index', { tasks })
+        const formattedTasks = tasks.map(task => {
+            task = task.toObject(); 
+            task.dueDate = formatDate(task.dueDate);
+            return task;
+        });
+
+        res.render('index', { tasks: formattedTasks });
     } catch (error) {
-        console.error('Error Fetching tasks:', error)
+        console.error('Error Fetching tasks:', error);
     }
 }
-
+// format date time 
+function formatDate(dateObj) {
+    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+    return dateObj.toLocaleDateString('en-US', options);
+}
 
 // GET - READ form to CREATE a new task 
 exports.newTaskForm = (req, res) => {

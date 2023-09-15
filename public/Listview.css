@@ -8,24 +8,26 @@ body {
 
 nav {
     background-color: #2c3e50;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
     color: white;
     padding: 15px 0;
     text-align: left;
 }
 
 nav a {
+background-color: #2980b9;
+    color: white;
+    padding: 15px 10px;
+    margin: 5px;
+    border: none;
+    font-size: large;
+    cursor: pointer;
     text-decoration: none;
-    color:#ecf0f1;
-    font-weight: 600;
-    padding: 5px 10px;
     border-radius: 3px;
-    transition: background-color 0.3s;
 }
 
 nav a:hover {
-    text-decoration: underline;
-    background-color: #34495e;
-    color: #ecf0f1;
+    background-color: green;
 }
 
 .common-button {
@@ -93,7 +95,7 @@ li {
 }
 
 .fa-hourglass-half {
-    color: purple;
+    color: brught orangered;
 }
 
 .fa-check {
@@ -126,7 +128,7 @@ th {
 .log-out {
 background-color: #e74c3c;
 color: white;
-padding: 5px 10px;
+padding: 10px 10px;
 margin: 5px;
 border: none;
 cursor: pointer;
