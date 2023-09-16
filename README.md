@@ -8,7 +8,6 @@ Honey Do Hub is a web-based task-sharing application designed to help busy coupl
 
 - **Task Status Tracking**: Keep track of task statuses (e.g., to-do, in progress, completed) for efficient task management.
 
-- **User Profiles**: Users can customize their profiles with names, profile pictures, and other personal information.
 
 ## Stretch Goals
 
@@ -19,7 +18,6 @@ Honey Do Hub is a web-based task-sharing application designed to help busy coupl
 - **Frontend**:
   - HTML, CSS, JavaScript
   - EJS (Embedded JavaScript) for dynamic templating
-  - Bootstrap for responsive design
 
 - **Backend**:
   - Node.js

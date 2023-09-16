@@ -16,6 +16,7 @@
 </nav>
 
 <body>
+    <div class="main-content">
 
     <h1>Task Details</h1>
 
@@ -32,7 +33,7 @@
     </p>
     <p>Updated On: <%= task.updatedOn %>
     </p>
-
+</div>
     <a href="/tasks/<%= task._id %>/edit" class="common-button">Edit</a>
     
         <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">

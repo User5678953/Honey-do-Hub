@@ -4,4 +4,90 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('https://img.freepik.com/premium-photo/3d-illustration-yellow-honeycomb-monochrome-honeycomb-honey_116124-2277.jpg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px 40px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 800px;
+}
+
+nav {
+    background-color: #2c3e50;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 15px 0;
+    text-align: left;
+    width: 100%;
+}
+
+nav a,
+.log-out {
+    background-color: #2980b9;
+    color: white;
+    padding: 15px 10px;
+    margin: 5px;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+nav a:hover {
+    background-color: green;
+}
+
+.common-button {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.common-button:hover {
+    background-color: #2980b9;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+.common-button,
+.delete-button {
+    box-sizing: border-box;
+    width: 90px;
+    text-align: center;
+}
+
+.log-out {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+h1,
+h2,
+p {
+    padding: 10px;
 }
