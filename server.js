@@ -33,17 +33,17 @@ app.use(express.static('public'))
 // EJS Views
 app.set('view engine', 'ejs')
 
-app.use(
-    session({
-      secret: process.env.SECRET,
-      resave: false,
-      saveUninitialized: true
-    })
-  )
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
+  
 // POST Parsing
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+// Method Override
 app.use(methodOverride('_method'))
 
 // Custom authentication middleware
@@ -56,13 +56,16 @@ const isAuthenticated = (req, res, next) => {
 }
 
 // Route Definitions  ////////////////////////////////////////////////
+app.use((req, res, next) => {
+    console.log(`Received ${req.method} request for ${req.url}`);
+    next();
+});
 
 // Use the routes from authController
 app.use('/', authController)
 
 // Task Route definition
 app.use('/tasks', isAuthenticated, taskRoutes)
-
 
 // Basic Error handling
 app.use((req, res, next) => {

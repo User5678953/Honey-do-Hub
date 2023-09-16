@@ -25,6 +25,16 @@ const taskSchema = new Schema({
         default: Date.now,
         required: true
     },
+    userId: {
+        type: String,
+        ref: 'User',
+        required: true
+    },
+    shared: {
+    type: Boolean,
+    default: false
+}
+
 })
 
 //create and export model

@@ -9,12 +9,18 @@ exports.getAllTasks = async (req, res) => {
     console.log('Displaying all Tasks')
     // Fetch from db
     try {
-        const tasks = await Task.find()
+        const tasks = await Task.find({
+            $or: [
+                { userId: req.session.currentUser._id },
+                { userId: "shared" }
+            ]
+        })
+        
         const formattedTasks = tasks.map(task => {
             task = task.toObject(); 
             task.dueDate = formatDate(task.dueDate);
             return task;
-        });
+        })
 
         res.render('index', { tasks: formattedTasks });
     } catch (error) {
@@ -23,8 +29,8 @@ exports.getAllTasks = async (req, res) => {
 }
 // format date time 
 function formatDate(dateObj) {
-    const options = { weekday: 'short', month: 'short', day: 'numeric' };
-    return dateObj.toLocaleDateString('en-US', options);
+    const options = { weekday: 'short', month: 'short', day: 'numeric' }
+    return dateObj.toLocaleDateString('en-US', options)
 }
 
 // GET - READ form to CREATE a new task 
@@ -37,7 +43,7 @@ exports.newTaskForm = (req, res) => {
 exports.createTask = async (req, res) => {
     try {
         const { title, description } = req.body;
-        const newTask = new Task({ title, description })
+        const newTask = new Task({ title, description, userId: req.session.currentUser._id  })
         await newTask.save()
         console.log('Creating a new task!')
         res.redirect('/tasks')
@@ -50,8 +56,13 @@ exports.createTask = async (req, res) => {
 // GET - READ specific task by ID
 exports.getTaskById = async (req, res) => {
     try {
-        const taskId = req.params.id
-        const task = await Task.findById(taskId)
+        const task = await Task.findOne({ 
+            _id: req.params.id,
+            $or: [
+                { userId: req.session.currentUser._id },
+                { userId: "shared" }
+            ]
+        })
         
         if (!task) {
             res.status(404).send('Task not found')
@@ -68,7 +79,13 @@ exports.getTaskById = async (req, res) => {
 // GET - READ form to EDIT task by ID
 exports.editTaskForm = async (req, res) => {
      try {
-        const task = await Task.findById(req.params.id)
+         const task = await Task.findOne({
+            _id: req.params.id,
+            $or: [
+                { userId: req.session.currentUser._id },
+                { userId: "shared" }
+            ]
+        })
          console.log(`Displaying form to edit task with ID: ${req.params.id}`)
          if (!task) {
              res.status(404).send('Task not found')
@@ -85,7 +102,14 @@ exports.editTaskForm = async (req, res) => {
 exports.updateTask = async (req, res) => {
      console.log('Starting the UPDATE Function')
     try {
-        const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body);
+        const updatedTask = await Task.findOneAndUpdate({
+            _id: req.params.id,
+            $or: [
+                { userId: req.session.currentUser._id },
+                { userId: "shared" }
+            ]
+        }, req.body)
+        
         if (!updatedTask) {
             res.status(404).send('Task not found')
         } else {
@@ -103,14 +127,20 @@ exports.deleteTask = async (req, res) => {
     console.log(`Attempting to delete task with ID: ${req.params.id}`)
 
     try {
-        const deletedTask = await Task.findByIdAndRemove(req.params.id)
+        const deletedTask = await Task.findOneAndRemove({
+            _id: req.params.id,
+            $or: [
+                { userId: req.session.currentUser._id },
+                { userId: "shared" }
+            ]
+        })
         if (!deletedTask) {
             res.status(404).send('Task not found')
         } else {
             console.log(`Deleteing task with ID: ${req.params.id}`)
             res.redirect('/tasks')
         }
-    } catch {
+    } catch (error) {
         console.error('Error deleting task:', error)
         res.status(500).send('An error occurred while deleting the task.')
     }    

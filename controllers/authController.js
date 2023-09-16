@@ -42,6 +42,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body
+
         // Find the user by their username in your database
         const foundUser = await User.findOne({ username })
 
@@ -51,6 +52,7 @@ router.post('/login', async (req, res) => {
 
             if (isAMatch) {
                 console.log('Login successful')
+                
                 // Create a session for the authenticated user
                 req.session.currentUser = foundUser
                 res.redirect('/tasks') 
