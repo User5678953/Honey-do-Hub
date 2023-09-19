@@ -30,6 +30,11 @@ const taskSchema = new Schema({
         ref: 'User',
         required: true
     },
+     users: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }],
     shared: {
     type: Boolean,
     default: false

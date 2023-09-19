@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Task = require('./models/taskModels')
-const mongoURI = "mongodb+srv://kendynweb:JO754cohXHdsjbD0@mymongodb.drbvgwr.mongodb.net/?retryWrites=true&w=majority"
+const mongoURI = process.env.MONGO_URI
 
 const db = mongoose.connection 
 

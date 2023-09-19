@@ -2,6 +2,8 @@
 const express = require('express')
 const taskRoutes = require('./routes/taskRoutes')
 const authController = require('./controllers/authController')
+const friendsRoutes = require('./routes/friendsRoutes')
+const friendsController = require('./controllers/friendsController')
 const bcrypt = require('bcrypt')
 const methodOverride = require('method-override')
 const session = require('express-session')
@@ -66,6 +68,8 @@ app.use('/', authController)
 
 // Task Route definition
 app.use('/tasks', isAuthenticated, taskRoutes)
+
+app.use(friendsRoutes)
 
 // Basic Error handling
 app.use((req, res, next) => {

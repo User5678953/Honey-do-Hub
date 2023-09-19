@@ -8,9 +8,11 @@ https://tranquil-spire-04571-13dba5e6053f.herokuapp.com/
 
 ## MVP Features
 
-- **Task Management**: Create, view, edit, and delete tasks. Assign tasks to specific users within the household.
+- **Task Management**: Create, view, edit, and delete tasks.
 
 - **Task Status Tracking**: Keep track of task statuses (e.g., to-do, in progress, completed) for efficient task management.
+
+- **Due Date Assigment**: Use an easy date picker to select due dates 
 
 
 ## Stretch Goals
@@ -49,5 +51,7 @@ https://tranquil-spire-04571-13dba5e6053f.herokuapp.com/
 3. Then start the application 
 
   node server.js 
+
+
 
    

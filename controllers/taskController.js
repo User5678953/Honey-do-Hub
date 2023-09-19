@@ -74,7 +74,7 @@ exports.getTaskById = async (req, res) => {
             console.log(`Displaying task with ID: ${req.params.id}`)
             res.render('show',{ task })
         }
-    } catch {
+    } catch (error) {
         console.error('Error Fetching task:', error)
         res.status(500).send('An error occurred while fetching the task.')
     }
@@ -120,7 +120,7 @@ exports.updateTask = async (req, res) => {
             console.log(`Updating task with ID: ${req.params.id}`)
             res.redirect('/tasks')
         }
-    } catch {
+    } catch (error) {
         console.error('Error updating task:', error)
         res.status(500).send('An error occurred while updating the task.')
     }
