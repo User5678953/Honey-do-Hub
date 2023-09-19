@@ -7,13 +7,14 @@ exports.renderFriendsPage = (req, res) => {
         res.render('friends', { searchResults: [] })
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server error')
+        res.status(500).send('Error: Could not fetch friends')
     }
 }
 
 
 // Search for friends
 exports.searchFriends = async (req, res) => {
+
     try {
         const searchQuery = req.body.searchUsername
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
@@ -25,7 +26,7 @@ exports.searchFriends = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server error')
+        res.status(500).send('No friend with username found')
     }
 }
 
