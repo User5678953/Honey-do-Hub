@@ -29,6 +29,10 @@ exports.getAllTasks = async (req, res) => {
 }
 // format date time 
 function formatDate(dateObj) {
+     if (!dateObj) {
+        return "N/A"
+     }
+    
     const options = { weekday: 'short', month: 'short', day: 'numeric' }
     return dateObj.toLocaleDateString('en-US', options)
 }
