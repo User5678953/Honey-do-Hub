@@ -32,12 +32,15 @@ exports.searchFriends = async (req, res) => {
 
 // Add friends
 //exports.addFriend = async (req, res) => {
-   // try {
+// try {
+    
 // Get the current user
+//const currentUser = User.findById(req.session.currentUser._id)
 // Add the friend's ID to the user friends array
+//currentUser.friends.push(req.params.id);
 // Save the updated user info
 //res.redirect to friends
-
+//res.redirect('/friends')
 //} catch (error) {
        // console.error(error);
        // res.status(500).send('Server error');
@@ -45,3 +48,5 @@ exports.searchFriends = async (req, res) => {
 
 
 //Then make a an option to assign to friend by adding a dropdown new task ejs that grabs user friends from friends array and populates, when friend is selscted, and form is submitted task data and friend id is sent to the database and updates, now when A friend sees the index of all tasks since the id is associated, they will be anle to see edit and update tasks. 
+
+//need to update createTask Function to include 
