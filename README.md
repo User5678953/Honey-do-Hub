@@ -2,6 +2,10 @@
 
 Honey Do Hub is a web-based task-sharing application designed to help busy couples and households manage their to-do lists collaboratively. It allows users to create, assign, and track tasks, making it easier to stay organized and divide responsibilities.
 
+## Link to hosted app
+
+https://tranquil-spire-04571-13dba5e6053f.herokuapp.com/
+
 ## MVP Features
 
 - **Task Management**: Create, view, edit, and delete tasks. Assign tasks to specific users within the household.
